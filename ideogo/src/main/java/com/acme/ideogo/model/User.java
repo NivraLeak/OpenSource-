@@ -3,7 +3,7 @@ package com.acme.ideogo.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.NaturalId;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -12,45 +12,36 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @Getter
 @Setter
-public class User extends AuditModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class User extends  AuditModel {
 
-    @NotNull
-    @Size(max = 40)
-    @NaturalId
-    private String email;
+     @Id
+     @NotBlank
+     @GeneratedValue(strategy =  GenerationType.IDENTITY)
+     private Long Id;
 
+    @NotBlank
     @NotNull
     @Size(max = 20)
-    @NaturalId
-    private String password;
+    @Column(unique = true)
+    private String Username;
 
+    @NotBlank
     @NotNull
-    @Size(max = 4)
-    @NaturalId
-    private String sex;
-
-    @NotNull
-    @Size(max = 20)
-    @NaturalId
-    private String occupation;
+    private String sexo;
 
     @NotNull
     @NotBlank
-    @Size(max = 100)
-    private String experience;
+    @Size(max = 20)
+    private String Password;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "user_project",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "project_id")})
-    @JsonIgnore
-    List<Project> projects;
+   // @ManyToMany(fetch = FetchType.LAZY,
+     //           cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+       //         mappedBy = "Users")
+    //@JsonIgnore
+    //private List<Project> projects;
+
 
 }

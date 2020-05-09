@@ -1,34 +1,33 @@
 package com.acme.ideogo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
 
 @Entity
-@Table(name = "Project")
+@Table(name = "projects")
 @Getter
 @Setter
 public class Project extends AuditModel {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
     @NotBlank
-    @Size(max = 30)
+    @Size(max=30)
     @Column(unique = true)
     private String name;
 
-    @NotNull
     @NotBlank
+    @NotNull
     @Size(max = 250)
     private String description;
 
@@ -36,20 +35,11 @@ public class Project extends AuditModel {
     @Lob
     private String content;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "project_tags",
-            joinColumns = {@JoinColumn(name = "project_id")},
-            inverseJoinColumns = {@JoinColumn(name = "tag_id")})
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    List<Tag> tags;
+    private User user;
 
-
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-            mappedBy = "users")
-    @JsonIgnore
-    private List<User> users;
 
 }
-

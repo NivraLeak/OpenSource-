@@ -9,23 +9,27 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "categories")
+@Table(name = "profiles")
 @Getter
 @Setter
-public class Category extends AuditModel {
+public class Profile  extends AuditModel{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long Id;
 
     @NotNull
     @NotBlank
-    @Size(max = 30)
-    private String name;
+    @Size(max = 50)
+    private String experience;
 
     @NotNull
     @NotBlank
-    @Size(max = 250)
+    @Size(max = 100)
+    private String degree;
+
+    @NotNull
+    @Lob
     private String description;
-
 
 }

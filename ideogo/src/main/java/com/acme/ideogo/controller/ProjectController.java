@@ -1,85 +1,49 @@
 package com.acme.ideogo.controller;
 
-
-import com.acme.ideogo.model.Category;
+import com.acme.ideogo.exception.ResourceNotFoundException;
 import com.acme.ideogo.model.Project;
-import com.acme.ideogo.resource.ProjectResource;;
-import com.acme.ideogo.resource.SaveProjectResource;
-import com.acme.ideogo.service.ProjectService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import org.modelmapper.ModelMapper;
+import com.acme.ideogo.repository.ProjectRepository;
+import com.acme.ideogo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
-import java.util.stream.Collectors;
 
-@Tag(name = "project", description = "the Projects API")
 @RestController
-@RequestMapping("/api")
 public class ProjectController {
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
-    private ModelMapper mapper;
+    private ProjectRepository projectRepository;
 
-    @Autowired
-    private ProjectService projectService;
-
-    @Operation(summary = "Get Projects", description = "Get All Projects by Pages", tags = { "projects" })
-    @GetMapping("/projectss")
-    public Page<ProjectResource> getAllProjects(
-            @Parameter(description="Pageable Parameter")
-                    Pageable pageable) {
-        Page<Project> projectsPage = projectService.getAllProjects(pageable);
-        List<ProjectResource> resources = projectsPage.getContent().stream().map(this::convertToResource).collect(Collectors.toList());
-        return new PageImpl<>(resources, pageable, resources.size());
+    @GetMapping("/users/{userId}/projects")
+    public Page<Project> getAllProjectsByUserId(@PathVariable(value="userId") Long userId, Pageable pageable){
+        return projectRepository.findByUserId(userId,pageable);
     }
 
-    @Operation(summary = "Get Project by Id", description = "Get a Project by specifying Id", tags = { "projects" })
-    @GetMapping("/projects/{id}")
-    public ProjectResource getProjectById(
-            @Parameter(description="Project Id")
-            @PathVariable(name = "id") Long projectId) {
-        return convertToResource(projectService.getProjectById(projectId));
+    @PostMapping("/users/{userId}/projects")
+    public Project createProject(@PathVariable(value="userId") Long userId,
+                                 @Valid @RequestBody Project project) {
+        return userRepository.findById(userId).map(user -> {
+            project.setUser(user);
+            return projectRepository.save(project);
+        }).orElseThrow(()->new ResourceNotFoundException("UserID" + userId+"not found"));
     }
 
-    @PostMapping("/project")
-    public ProjectResource createProject(@Valid @RequestBody SaveProjectResource resource)  {
-        Project projects = convertToEntity(resource);
-        return convertToResource(projectService.createProject(projects));
-    }
-
-    @PutMapping("/project/{id}")
-    public ProjectResource updateProject(@PathVariable(name = "id") Long projectId, @Valid @RequestBody SaveProjectResource resource) {
-        Project project = convertToEntity(resource);
-        return convertToResource(projectService.updateProject(projectId, project));
-    }
-
-    @DeleteMapping("/project/{id}")
-    public ResponseEntity<?> deleteProject(@PathVariable(name = "id") Long projectId) {
-        return projectService.deleteProject(projectId);
-    }
-
-    @GetMapping("/tags/{tagId}/categories")
-    public Page<ProjectResource> getAllProjectsByTagId(@PathVariable(name = "projectId") Long projectId, Pageable pageable) {
-        Page<Project> projectsPage = projectService.getAllProjectsByTagId(projectId, pageable);
-        List<ProjectResource> resources = projectsPage.getContent().stream().map(this::convertToResource).collect(Collectors.toList());
-        return new PageImpl<>(resources, pageable, resources.size());
-    }
-
-    private Project convertToEntity(SaveProjectResource resource) {
-        return mapper.map(resource, Project.class);
-    }
-
-    private ProjectResource convertToResource(Project entity) {
-        return mapper.map(entity, ProjectResource.class);
+    @PutMapping("/users/{userId}/projects/{projectId}")
+    public Project updateProject(@PathVariable( value = "userId") Long userId,
+                                 @PathVariable(value = "projectId") Long projectId,
+                                 @Valid @RequestBody Project projectdetails){
+        if (!userRepository.existsById(userId)) {
+            throw  new ResourceNotFoundException("UserId" + userId+"not found");
+        }
+        return projectRepository.findById(projectId).map(project ->{
+            project.setDescription(projectdetails.getDescription());
+            return projectRepository.save(project);
+        } ).orElseThrow(()->new ResourceNotFoundException("ProjectId" + projectId +"not found"));
     }
 
 }
