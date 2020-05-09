@@ -44,27 +44,27 @@ public class UserController {
     }
 
     @Operation(summary = "Get User by Id", description = "Get a User by specifying Id", tags = { "users" })
-    @GetMapping("/projects/{id}")
+    @GetMapping("/users/{id}")
     public UserResource getUserById(
             @Parameter(description="Project Id")
             @PathVariable(name = "id") Long userId) {
         return convertToResource(userService.getUserById(userId));
     }
 
-    @PostMapping("/project")
-    public UserResource createProject(@Valid @RequestBody SaveUserResource resource)  {
+    @PostMapping("/users")
+    public UserResource createUser(@Valid @RequestBody SaveUserResource resource)  {
         User users = convertToEntity(resource);
         return convertToResource(userService.createUser(users));
     }
 
-    @PutMapping("/project/{id}")
-    public UserResource updateProject(@PathVariable(name = "id") Long projectId, @Valid @RequestBody SaveUserResource resource) {
+    @PutMapping("/users/{id}")
+    public UserResource updateUser(@PathVariable(name = "id") Long userId, @Valid @RequestBody SaveUserResource resource) {
         User user = convertToEntity(resource);
-        return convertToResource(userService.updateUser(projectId, user));
+        return convertToResource(userService.updateUser(userId, user));
     }
 
-    @DeleteMapping("/project/{id}")
-    public ResponseEntity<?> deleteProject(@PathVariable(name = "id") Long userId) {
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable(name = "id") Long userId) {
         return userService.deleteUser(userId);
     }
 

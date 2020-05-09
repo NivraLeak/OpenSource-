@@ -68,7 +68,7 @@ public class TagController {
         return tagService.deleteTag(tagId);
     }
 
-    @GetMapping("/tags/{tagId}/categories")
+    @GetMapping("/categories/{categoriesId}/tags")
     public Page<TagResource> getAllTagsByCategoryId(@PathVariable(name = "tagId") Long tagId, Pageable pageable) {
         Page<Tag> tagsPage = tagService.getAllTagsByCategoryId(tagId, pageable);
         List<TagResource> resources = tagsPage.getContent().stream().map(this::convertToResource).collect(Collectors.toList());

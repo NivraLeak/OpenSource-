@@ -47,7 +47,7 @@ public class Project extends AuditModel {
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-            mappedBy = "users")
+            mappedBy = "projects")
     @JsonIgnore
     private List<User> users;
 
