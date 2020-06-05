@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@Tag(name = "goal", description = "the Goals API")
+@Tag(name = "goals", description = "the Goals API")
 @RestController
 @RequestMapping("/api")
 public class GoalController {

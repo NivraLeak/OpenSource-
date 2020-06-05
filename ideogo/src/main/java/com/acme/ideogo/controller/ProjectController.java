@@ -21,7 +21,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Tag(name = "project", description = "the Projects API")
+@Tag(name = "projects", description = "the Projects API")
 @RestController
 @RequestMapping("/api")
 public class ProjectController {
@@ -33,7 +33,7 @@ public class ProjectController {
     private ProjectService projectService;
 
     @Operation(summary = "Get Projects", description = "Get All Projects by Pages", tags = { "projects" })
-    @GetMapping("/projectss")
+    @GetMapping("/projects")
     public Page<ProjectResource> getAllProjects(
             @Parameter(description="Pageable Parameter")
                     Pageable pageable) {
@@ -50,24 +50,24 @@ public class ProjectController {
         return convertToResource(projectService.getProjectById(projectId));
     }
 
-    @PostMapping("/project")
+    @PostMapping("/projects")
     public ProjectResource createProject(@Valid @RequestBody SaveProjectResource resource)  {
         Project projects = convertToEntity(resource);
         return convertToResource(projectService.createProject(projects));
     }
 
-    @PutMapping("/project/{id}")
+    @PutMapping("/projects/{id}")
     public ProjectResource updateProject(@PathVariable(name = "id") Long projectId, @Valid @RequestBody SaveProjectResource resource) {
         Project project = convertToEntity(resource);
         return convertToResource(projectService.updateProject(projectId, project));
     }
 
-    @DeleteMapping("/project/{id}")
+    @DeleteMapping("/projects/{id}")
     public ResponseEntity<?> deleteProject(@PathVariable(name = "id") Long projectId) {
         return projectService.deleteProject(projectId);
     }
 
-    @GetMapping("/tags/{tagId}/categories")
+    @GetMapping("/tags/{tagId}/projects")
     public Page<ProjectResource> getAllProjectsByTagId(@PathVariable(name = "projectId") Long projectId, Pageable pageable) {
         Page<Project> projectsPage = projectService.getAllProjectsByTagId(projectId, pageable);
         List<ProjectResource> resources = projectsPage.getContent().stream().map(this::convertToResource).collect(Collectors.toList());

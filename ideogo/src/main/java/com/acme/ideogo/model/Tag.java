@@ -36,4 +36,10 @@ public class Tag extends AuditModel {
     @JsonIgnore
     private List<Project> projects;
 
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            mappedBy = "tags")
+    @JsonIgnore
+    private List<Profile> profiles;
+
 }

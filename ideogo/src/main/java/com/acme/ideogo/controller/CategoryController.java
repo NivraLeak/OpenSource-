@@ -19,7 +19,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Tag(name = "category", description = "the Categories API")
+@Tag(name = "categories", description = "the Categories API")
 @RestController
 @RequestMapping("/api")
 public class CategoryController {

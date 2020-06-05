@@ -22,7 +22,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+@io.swagger.v3.oas.annotations.tags.Tag(name = "tags", description = "the Tags API")
 @RestController
 @RequestMapping("/api")
 public class TagController {
@@ -51,24 +51,24 @@ public class TagController {
         return convertToResource(tagService.getTagById(tagId));
     }
 
-    @PostMapping("/project")
+    @PostMapping("/tags")
     public TagResource createTag(@Valid @RequestBody SaveTagResource resource)  {
         Tag tag = convertToEntity(resource);
         return convertToResource(tagService.createTag(tag));
     }
 
-    @PutMapping("/project/{id}")
+    @PutMapping("/tags/{id}")
     public TagResource updateTag(@PathVariable(name = "id") Long projectId, @Valid @RequestBody SaveTagResource resource) {
         Tag tag = convertToEntity(resource);
         return convertToResource(tagService.updateTag(projectId, tag));
     }
 
-    @DeleteMapping("/project/{id}")
+    @DeleteMapping("/tags/{id}")
     public ResponseEntity<?> deleteTag(@PathVariable(name = "id") Long tagId) {
         return tagService.deleteTag(tagId);
     }
 
-    @GetMapping("/tags/{tagId}/categories")
+    @GetMapping("/categories/{categoriesId}/tags")
     public Page<TagResource> getAllTagsByCategoryId(@PathVariable(name = "tagId") Long tagId, Pageable pageable) {
         Page<Tag> tagsPage = tagService.getAllTagsByCategoryId(tagId, pageable);
         List<TagResource> resources = tagsPage.getContent().stream().map(this::convertToResource).collect(Collectors.toList());
