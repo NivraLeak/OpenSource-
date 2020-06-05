@@ -22,7 +22,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Tag(name = "user", description = "the Users API")
+@Tag(name = "users", description = "the Users API")
 @RestController
 @RequestMapping("/api")
 public class UserController {

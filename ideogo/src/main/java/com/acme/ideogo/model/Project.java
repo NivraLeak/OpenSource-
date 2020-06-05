@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
-@Table(name = "Project")
+@Table(name = "projects")
 @Getter
 @Setter
 public class Project extends AuditModel {
@@ -36,6 +36,11 @@ public class Project extends AuditModel {
     @Lob
     private String content;
 
+
+    //@OneToOne(mappedBy = "invoice", cascade = CascadeType.ALL)
+    //private ProjectSchedule projectSchedule;
+
+
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "project_tags",
@@ -43,7 +48,6 @@ public class Project extends AuditModel {
             inverseJoinColumns = {@JoinColumn(name = "tag_id")})
     @JsonIgnore
     List<Tag> tags;
-
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE},
