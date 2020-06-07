@@ -37,8 +37,8 @@ public class Project extends AuditModel {
     private String content;
 
 
-    //@OneToOne(mappedBy = "invoice", cascade = CascadeType.ALL)
-    //private ProjectSchedule projectSchedule;
+    @OneToOne(mappedBy = "project", cascade = CascadeType.ALL)
+    private ProjectSchedule projectSchedule;
 
 
     @ManyToMany(fetch = FetchType.LAZY,

@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
-@Table(name = "projectsschedules")
+@Table(name = "projectschedules")
 @Getter
 @Setter
 public class ProjectSchedule extends AuditModel {
@@ -31,7 +31,7 @@ public class ProjectSchedule extends AuditModel {
     @Lob
     private String description;
 
-    @OneToOne
+    @OneToOne(mappedBy = "project_schedule", cascade = CascadeType.ALL)
     private Project project;
 
     //@OneToMany(cascade = CascadeType.ALL, mappedBy = "mTask")
