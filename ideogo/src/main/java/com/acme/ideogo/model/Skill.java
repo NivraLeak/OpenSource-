@@ -27,11 +27,11 @@ public class Skill extends AuditModel {
     @Size(max = 100)
     private String DegreesRequirement;
 
-    // @ManyToOne(fetch = FetchType.LAZY, optional = false)/// cuando se instancia un comment, no tiene valor inicial --> lazy
-    //  @JoinColumn(name = "profile_id", nullable = false)// fk a tabla posts
-    //   @OnDelete(action = OnDeleteAction.CASCADE)//si borro un post, se van todos los comments en ese ost
-    //   @JsonIgnore// si se pasa a formato json no considere esa columna
-    //  private Profile profile;
+     @ManyToOne(fetch = FetchType.LAZY, optional = false)/// cuando se instancia un comment, no tiene valor inicial --> lazy
+     @JoinColumn(name = "profile_id", nullable = false)// fk a tabla posts
+     @OnDelete(action = OnDeleteAction.CASCADE)//si borro un post, se van todos los comments en ese ost
+     @JsonIgnore// si se pasa a formato json no considere esa columna
+      private Profile profile;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)/// cuando se instancia un comment, no tiene valor inicial --> lazy
     @JoinColumn(name = "tag_id", nullable = false)// fk a tabla posts

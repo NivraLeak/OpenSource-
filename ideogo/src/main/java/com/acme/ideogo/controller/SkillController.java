@@ -27,7 +27,7 @@ public class SkillController {
     private SkillService skillService;
 
     @GetMapping("/tags/{tagId}/skills")
-    public Page<SkillResource> getAllCommentsByTagId(
+    public Page<SkillResource> getAllSkillsByTagId(
             @PathVariable(name = "tagId") Long tagId,
             Pageable pageable) {
         Page<Skill> skillPage = skillService.getAllSkillsByTagId(tagId, pageable);
@@ -36,27 +36,27 @@ public class SkillController {
     }
 
     @GetMapping("/tags/{tagId}/skills/{skillId}")
-    public SkillResource getCommentByIdAndPostId(@PathVariable(name = "tagId") Long tagId,
+    public SkillResource getSkillByIdAndTagId(@PathVariable(name = "tagId") Long tagId,
                                                    @PathVariable(name = "skillId") Long skillId) {
         return convertToResource(skillService.getSkillByIdAndTagId(tagId, skillId));
     }
 
     @PostMapping("/tags/{tagId}/skills")
-    public SkillResource createComment(@PathVariable(name = "tagId") Long TagId,
+    public SkillResource createSkill(@PathVariable(name = "tagId") Long TagId,
                                          @Valid @RequestBody SaveSkillResource resource) {
         return convertToResource(skillService.createSkill(TagId, convertToEntity(resource)));
 
     }
 
     @PutMapping("/tags/{tagId}/skills/{skillId}")
-    public SkillResource updateComment(@PathVariable(name = "tagId") Long postId,
+    public SkillResource updateSkill(@PathVariable(name = "tagId") Long postId,
                                          @PathVariable(name = "skillId") Long commentId,
                                          @Valid @RequestBody SaveSkillResource resource) {
         return convertToResource(skillService.updateSkill(postId, commentId, convertToEntity(resource)));
     }
 
     @DeleteMapping("/tags/{tagId}/skills/{skillId}")
-    public ResponseEntity<?> deleteComment(@PathVariable(name = "tagId") Long postId,
+    public ResponseEntity<?> deleteSkill(@PathVariable(name = "tagId") Long postId,
                                            @PathVariable(name = "skillId") Long commentId) {
         return skillService.deleteSkill(postId, commentId);
     }

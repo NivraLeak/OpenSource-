@@ -13,5 +13,7 @@ import java.util.Optional;
 @Repository
 public interface SkillRepository  extends JpaRepository<Skill, Long> {
     Page<Skill> findByTagId(Long tagId, Pageable pageable);
+    Page<Skill> findByProfileId(Long profileId, Pageable pageable);
+    Optional<Skill>findByIdAndProfileId(Long id, Long profileId);
     Optional<Skill> findByIdAndTagId(Long id, Long tagId);
 }

@@ -27,6 +27,19 @@ public class SkillServiceImpl implements SkillService {
     }
 
     @Override
+    public Page<Skill> getAllSkillsByProfileId(Long profileId, Pageable pageable) {
+        return skillRepository.findByProfileId(profileId,pageable);
+    }
+
+    @Override
+    public Skill getSkillByIdAndProfileId(Long profileId, Long skillId) {
+        return skillRepository.findByIdAndTagId(skillId,skillId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Skill not found with Id " + skillId +
+                                " and ProfileId " + skillId ));
+    }
+
+    @Override
     public Skill getSkillByIdAndTagId(Long tagId, Long skillId) {
         return skillRepository.findByIdAndTagId(skillId,tagId)
                 .orElseThrow(() -> new ResourceNotFoundException(
