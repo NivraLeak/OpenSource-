@@ -1,8 +1,6 @@
 package com.acme.ideogo.service;
 
 import com.acme.ideogo.model.Requirement;
-import com.acme.ideogo.model.Resource;
-import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
