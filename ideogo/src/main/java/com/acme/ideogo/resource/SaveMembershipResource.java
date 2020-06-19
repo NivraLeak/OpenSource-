@@ -1,22 +1,15 @@
-package com.acme.ideogo.model;
+package com.acme.ideogo.resource;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
-
-@Entity
-@Table(name = "memberships")
 @Getter
 @Setter
-public class Membership extends AuditModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class SaveMembershipResource {
     @NotNull
     @NotBlank
     private Date start_at;
@@ -29,5 +22,4 @@ public class Membership extends AuditModel {
     @NotBlank
     @Size(max = 30)
     private String Name;
-
 }
