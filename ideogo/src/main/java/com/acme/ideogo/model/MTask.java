@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-@Table(name = "MTasks")
+@Table(name = "tasks")
 @Getter
 @Setter
 public class MTask extends AuditModel{
