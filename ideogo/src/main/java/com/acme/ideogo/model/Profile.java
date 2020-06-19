@@ -25,7 +25,7 @@ public class Profile extends AuditModel {
 
     @NotNull
     @NotBlank
-    @Size(max = 40)
+    @Size(max = 30)
     @Column(unique = true)
     private String name;
 
@@ -36,7 +36,7 @@ public class Profile extends AuditModel {
 
     @NotNull
     @NotBlank
-    @Size(max = 80)
+    @Size(max = 30)
     private String occupation;
 
     @NotNull

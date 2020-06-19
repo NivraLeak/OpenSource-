@@ -35,5 +35,5 @@ public class SaveProfileResource {
     @NotNull
     @NotBlank
     @Size(max = 20)
-    private String typeuser;
+    private String typeUser;
 }

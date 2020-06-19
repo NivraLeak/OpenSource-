@@ -34,11 +34,11 @@ public class Category extends AuditModel {
 
 
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+                cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "categories_tags",
-            joinColumns = {@JoinColumn(name = "post_id")},
-            inverseJoinColumns = {@JoinColumn(name = "tag_id")})
-            @JsonIgnore
+               joinColumns = {@JoinColumn(name = "post_id")},
+               inverseJoinColumns = {@JoinColumn(name = "tag_id")})
+    @JsonIgnore
     List<Tag> tags;
 
 }

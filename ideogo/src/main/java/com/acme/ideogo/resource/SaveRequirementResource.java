@@ -14,7 +14,7 @@ public class SaveRequirementResource {
     @NotNull
     @NotBlank
     @Size(max = 100)
-    // @NaturalId///Llave alterna en bd
+
     private String name;
 
     @NotNull

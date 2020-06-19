@@ -7,9 +7,9 @@ import javax.validation.constraints.Size;
 public class SaveApplicationResource {
     @NotNull
     @NotBlank
-    private int OrderRequest;
+    private int orderRequest;
 
     @NotNull
     @NotBlank
-    public String State;
+    public String state;
 }

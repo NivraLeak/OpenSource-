@@ -5,6 +5,6 @@ import javax.validation.constraints.NotNull;
 
 public class ApplicationResource {
     private Long id;
-    private int OrderRequest;
-    public String State;
+    private int orderRequest;
+    public String state;
 }
