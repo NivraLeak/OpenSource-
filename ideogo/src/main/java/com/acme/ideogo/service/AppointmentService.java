@@ -7,8 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
 public interface AppointmentService {
-    Page<Skill> getAllSkillsByProjectScheduleId(Long projectScheduleId, Pageable pageable);
-    Skill createAppointment(Long projectScheduleId, Appointment appointment);
-    Skill updateAppointment(Long projectScheduleId, Long appointmentId, Appointment appointmentDetails);
+    Page<Appointment> getAllAppointmentsByProjectScheduleId(Long projectScheduleId, Pageable pageable);
+    Appointment createAppointment(Long projectScheduleId, Appointment appointment);
+    Appointment updateAppointment(Long projectScheduleId, Long appointmentId, Appointment appointmentDetails);
     ResponseEntity<?> deleteAppointment(Long projectScheduleId, Long appointmentId);
 }
