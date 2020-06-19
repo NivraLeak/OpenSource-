@@ -33,4 +33,6 @@ public class Activity extends AuditModel {
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
     private ProjectSchedule projectSchedule;
+
+
 }

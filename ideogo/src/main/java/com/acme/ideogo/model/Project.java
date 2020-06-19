@@ -49,5 +49,7 @@ public class Project extends AuditModel {
             mappedBy = "projects")
     @JsonIgnore
     private List<User> users;
+
+
 }
 

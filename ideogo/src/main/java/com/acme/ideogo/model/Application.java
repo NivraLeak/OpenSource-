@@ -39,4 +39,6 @@ public class Application extends AuditModel {
     @JsonIgnore// si se pasa a formato json no considere esa columna
     private Project project;
 
+
+
 }
