@@ -11,4 +11,5 @@ public interface AppointmentService {
     Appointment createAppointment(Long projectScheduleId, Appointment appointment);
     Appointment updateAppointment(Long projectScheduleId, Long appointmentId, Appointment appointmentDetails);
     ResponseEntity<?> deleteAppointment(Long projectScheduleId, Long appointmentId);
+    Appointment getAppointmentsByIdAndTagId(Long projectScheduleId, Long appointmentId);
 }

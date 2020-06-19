@@ -54,4 +54,12 @@ public class AppointmentServiceImpl implements AppointmentService {
         }).orElseThrow(() -> new ResourceNotFoundException(
                 "Appointment not found with Id " + appointmentId + " and TagId " + projectScheduleId));
     }
+
+    @Override
+    public Appointment getAppointmentsByIdAndTagId(Long projectScheduleId, Long appointmentId) {
+        return appointmentRepository.findByIdAndProjectScheduleId(appointmentId,projectScheduleId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Skill not found with Id " + appointmentId +
+                                " and ProfileId " + projectScheduleId ));
+    }
 }
