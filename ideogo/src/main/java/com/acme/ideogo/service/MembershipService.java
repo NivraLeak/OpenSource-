@@ -10,6 +10,6 @@ public interface MembershipService {
     ResponseEntity<?> deleteMembership(Long membershipId);
     Membership updateMembership(Long profileId, Membership membershipRequest);
     Membership createMembership(Membership membership);
-    Membership getMembershipById(Long postId);
+    Membership getMembershipById(Long membershipId);
     Page<Membership> getAllMembership(Pageable pageable);
 }
