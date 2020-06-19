@@ -54,7 +54,7 @@ public class ActivityController {
         return activityService.deleteActivity(activityId);
     }
 
-    @GetMapping("/projectschedules/{projectscheduleId}/activities")
+    @GetMapping("/projectSchedules/{projectSchedulesId}/activities")
     public Page<ActivityResource> getAllActivitiesByProjectScheduleId(@PathVariable(name = "activityId") Long activityId, Pageable pageable) {
         Page<Activity> activitiesPage = activityService.getAllActivitiesByProjectScheduleId(activityId, pageable);
         List<ActivityResource> resources = activitiesPage.getContent().stream().map(this::convertToResource).collect(Collectors.toList());
