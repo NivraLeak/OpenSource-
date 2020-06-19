@@ -26,23 +26,23 @@ public class User extends AuditModel {
     private String email;
 
     @NotNull
-    @Size(max = 20)
+    @Size(max = 30)
     @NaturalId
     private String password;
 
     @NotNull
-    @Size(max = 4)
+    @Size(max = 10)
     @NaturalId
     private String sex;
 
     @NotNull
-    @Size(max = 20)
+    @Size(max = 30)
     @NaturalId
     private String occupation;
 
     @NotNull
     @NotBlank
-    @Size(max = 100)
+    @Size(max = 250)
     private String experience;
 
     @ManyToMany(fetch = FetchType.LAZY,
@@ -52,5 +52,4 @@ public class User extends AuditModel {
             inverseJoinColumns = {@JoinColumn(name = "project_id")})
     @JsonIgnore
     List<Project> projects;
-
 }

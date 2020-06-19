@@ -20,7 +20,7 @@ public class Tag extends AuditModel {
     private Long id;
 
     @NotNull
-    @Size(max = 100)
+    @Size(max = 30)
     @NaturalId
     private String name;
 

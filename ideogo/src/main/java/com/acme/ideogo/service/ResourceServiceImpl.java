@@ -3,7 +3,6 @@ package com.acme.ideogo.service;
 import com.acme.ideogo.exception.ResourceNotFoundException;
 import com.acme.ideogo.model.Resource;
 import com.acme.ideogo.repository.ResourceRepository;
-import jdk.management.resource.ResourceId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -27,7 +27,7 @@ public class Activity extends AuditModel {
 
     @NotNull
     @NotBlank
-    @Lob
+    @Size(max = 250)
     private String description;
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -37,7 +37,4 @@ public class Activity extends AuditModel {
    ///@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
    ///@JsonIgnore
    ///private Project project;
-
-
-
 }
