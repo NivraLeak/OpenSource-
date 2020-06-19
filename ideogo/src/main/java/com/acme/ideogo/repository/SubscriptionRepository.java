@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface SubscriptionRepository extends JpaRepository<Subscription, Long> {
-    Page<Subscription> findBySubscriptionId(Long subscriptionId, Pageable pageable);
-    Optional<Subscription> findByIdAndSubscriptionId(Long id, Long subscriptionId);
+    Page<Subscription> findByMembershipId(Long subscriptionId, Pageable pageable);
+    Optional<Subscription> findByIdAndMembershipId(Long id, Long subscriptionId);
 }

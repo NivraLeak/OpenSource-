@@ -9,8 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
 public interface SubscriptionService {
-    Page<Membership> getAllSkillsByMembershipId(Long membershipId, Pageable pageable);
-    Membership createSubscription(Long membershipId, Subscription subscription);
-    Membership updateSubscription(Long membershipId, Long subscriptionId, Subscription subscriptionDetails);
+    Page<Subscription> getAllSubscriptionsByMembershipId(Long membershipId, Pageable pageable);
+    Subscription createSubscription(Long membershipId, Subscription subscription);
+    Subscription updateSubscription(Long membershipId, Long subscriptionId, Subscription subscriptionDetails);
     ResponseEntity<?> deleteSubscription(Long membershipId, Long subscriptionId);
 }
