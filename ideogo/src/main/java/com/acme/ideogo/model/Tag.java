@@ -42,4 +42,5 @@ public class Tag extends AuditModel {
     @JsonIgnore
     private List<Profile> profiles;
 
+
 }

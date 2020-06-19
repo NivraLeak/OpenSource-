@@ -30,4 +30,5 @@ public class Goal extends AuditModel {
     @Size(max = 250)
     private String description;
 
+
 }

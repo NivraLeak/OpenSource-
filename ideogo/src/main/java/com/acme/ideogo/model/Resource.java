@@ -32,7 +32,4 @@ public class Resource extends AuditModel {
     private String Unit;
 
 
-
-
-
 }
