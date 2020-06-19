@@ -10,5 +10,5 @@ import java.util.Optional;
 
 public interface AppointmentRepository extends JpaRepository< Appointment,Long > {
     Page<Appointment> findByAppointmentId(Long appointmentId, Pageable pageable);
-    Optional<Appointment> findByIdAndAppointmentId(Long id, Long profileId);
+    Optional<Appointment> findByIdAndAppointmentId(Long id, Long appointmentId);
 }
