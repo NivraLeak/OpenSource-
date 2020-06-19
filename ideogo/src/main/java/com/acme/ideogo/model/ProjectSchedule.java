@@ -33,13 +33,4 @@ public class ProjectSchedule extends AuditModel {
 
     @OneToOne
     private Project project;
-
-    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "mTask")
-    //@JsonIgnore
-    //private List<MTask> tasks;
-/////
-    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "activity")
-    //@JsonIgnore
-    //private List<Activity> activities;
-
 }

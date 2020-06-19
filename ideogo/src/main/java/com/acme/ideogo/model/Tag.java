@@ -41,5 +41,4 @@ public class Tag extends AuditModel {
             mappedBy = "tags")
     @JsonIgnore
     private List<Profile> profiles;
-
 }
