@@ -31,39 +31,39 @@ public class SubscriptionController {
     @Autowired
     private SubscriptionService subscriptionService;
 
-    @GetMapping("/tags/{tagId}/skills")
+    @GetMapping("/memberships/{membershipId}/subscriptions")
     public Page<SubscriptionResource> getAllSubscriptionsByTagId(
-            @PathVariable(name = "tagId") Long tagId,
+            @PathVariable(name = "membershipId") Long membershipsId,
             Pageable pageable) {
-        Page<Subscription> skillPage = subscriptionService.getAllSubscriptionsByMembershipId(tagId, pageable);
+        Page<Subscription> skillPage = subscriptionService.getAllSubscriptionsByMembershipId(membershipsId, pageable);
         List<SubscriptionResource> resources = skillPage.getContent().stream().map(this::convertToResource).collect(Collectors.toList());
         return new PageImpl<>(resources, pageable, resources.size());
     }
 
-    @GetMapping("/tags/{tagId}/skills/{subscriptionId}")
-    public SubscriptionResource getSubscriptionByIdAndMembershipId(@PathVariable(name = "tagId") Long tagId,
+    @GetMapping("/memberships/{membershipId}/subscriptions/{subscriptionId}")
+    public SubscriptionResource getSubscriptionByIdAndMembershipId(@PathVariable(name = "membershipId") Long membershipId,
                                               @PathVariable(name = "subscriptionId") Long subscriptionId) {
-        return convertToResource(subscriptionService.getSubscriptionByIdAndMembershipId(tagId, subscriptionId));
+        return convertToResource(subscriptionService.getSubscriptionByIdAndMembershipId(membershipId, subscriptionId));
     }
 
-    @PostMapping("/tags/{tagId}/skills")
-    public SubscriptionResource createSkill(@PathVariable(name = "tagId") Long TagId,
+    @PostMapping("/membershipss/{membershipId}/subscriptions")
+    public SubscriptionResource createSkill(@PathVariable(name = "membershipsId") Long membershipId,
                                      @Valid @RequestBody SaveSubscriptionResource resource) {
-        return convertToResource(subscriptionService.createSubscription(TagId, convertToEntity(resource)));
+        return convertToResource(subscriptionService.createSubscription(membershipId, convertToEntity(resource)));
 
     }
 
-    @PutMapping("/tags/{tagId}/skills/{skillId}")
-    public SubscriptionResource updateSkill(@PathVariable(name = "tagId") Long postId,
-                                     @PathVariable(name = "skillId") Long commentId,
+    @PutMapping("/memberships/{membershipId}/subscriptions/{subscriptionId}")
+    public SubscriptionResource updateSkill(@PathVariable(name = "membershipId") Long membershipId,
+                                     @PathVariable(name = "subscriptionId") Long subscriptionId,
                                      @Valid @RequestBody SaveSubscriptionResource resource) {
-        return convertToResource(subscriptionService.updateSubscription(postId, commentId, convertToEntity(resource)));
+        return convertToResource(subscriptionService.updateSubscription(membershipId, subscriptionId, convertToEntity(resource)));
     }
 
-    @DeleteMapping("/tags/{tagId}/skills/{skillId}")
-    public ResponseEntity<?> deleteSkill(@PathVariable(name = "tagId") Long postId,
-                                         @PathVariable(name = "skillId") Long commentId) {
-        return subscriptionService.deleteSubscription(postId, commentId);
+    @DeleteMapping("/memberships/{membershipId}/subscriptions/{subscriptionId}")
+    public ResponseEntity<?> deleteSkill(@PathVariable(name = "membershipId") Long membershipId,
+                                         @PathVariable(name = "subscriptionId") Long subscriptionId) {
+        return subscriptionService.deleteSubscription(membershipId, subscriptionId);
     }
 
     private Subscription convertToEntity(SaveSubscriptionResource resource) {
