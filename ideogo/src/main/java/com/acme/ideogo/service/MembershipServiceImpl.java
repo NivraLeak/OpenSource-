@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MembershipServiceImpl implements MembershipService {
 
     @Autowired
@@ -38,7 +40,7 @@ public class MembershipServiceImpl implements MembershipService {
     @Override
     public Membership getMembershipById(Long membershipId) {
         return membershipRepository.findById(membershipId)
-                .orElseThrow(() -> new ResourceNotFoundException("Project", "Id", membershipId));
+                .orElseThrow(() -> new ResourceNotFoundException("MembershipId", "Id", membershipId));
     }
 
     @Override
