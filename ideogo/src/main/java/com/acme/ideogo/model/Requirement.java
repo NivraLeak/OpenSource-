@@ -24,7 +24,7 @@ public class Requirement extends  AuditModel {
 
     @NotNull
     @NotBlank
-    @Size(max = 100)
+    @Size(max = 50)
    // @NaturalId///Llave alterna en bd
     private String name;
 

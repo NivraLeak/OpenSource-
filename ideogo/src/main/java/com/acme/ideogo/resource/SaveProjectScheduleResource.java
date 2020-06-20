@@ -21,6 +21,6 @@ public class SaveProjectScheduleResource {
 
     @NotBlank
     @NotNull
-    @Lob
+    @Size(max = 250)
     private String description;
 }

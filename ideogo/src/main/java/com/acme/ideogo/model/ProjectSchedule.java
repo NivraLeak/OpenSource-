@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
-@Table(name = "projectschedules")
+@Table(name = "projectsschedules")
 @Getter
 @Setter
 public class ProjectSchedule extends AuditModel {
@@ -23,23 +23,14 @@ public class ProjectSchedule extends AuditModel {
 
     @NotBlank
     @NotNull
-    @Size(max = 50)
+    @Size(max = 30)
     private String name;
 
     @NotBlank
     @NotNull
-    @Lob
+    @Size(max = 250)
     private String description;
 
-    @OneToOne(mappedBy = "project_schedule", cascade = CascadeType.ALL)
+    @OneToOne
     private Project project;
-
-    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "mTask")
-    //@JsonIgnore
-    //private List<MTask> tasks;
-/////
-    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "activity")
-    //@JsonIgnore
-    //private List<Activity> activities;
-
 }

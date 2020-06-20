@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 public interface ProfileService  {
     Page<Profile> getAllProfilesByTagId(Long tagId, Pageable pageable);
     ResponseEntity<?> deleteProfile(Long profileId);
-    Profile updateProfile(Long postId, Profile profileRequest);
+    Profile updateProfile(Long postId, Profile postRequest);
     Profile createProfile(Profile profile);
     Profile getProfileById(Long postId);
     Page<Profile> getAllProfiles(Pageable pageable);
