@@ -13,4 +13,5 @@ public interface SubscriptionService {
     Subscription createSubscription(Long membershipId, Subscription subscription);
     Subscription updateSubscription(Long membershipId, Long subscriptionId, Subscription subscriptionDetails);
     ResponseEntity<?> deleteSubscription(Long membershipId, Long subscriptionId);
+    Subscription getSubscriptionByIdAndMembershipId(Long membershipId, Long subscriptionId);
 }

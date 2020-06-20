@@ -55,5 +55,13 @@ public class SubscriptionServiceImpl implements SubscriptionService {
                 "Subscription not found with Id " + subscriptionId + " and MembershipId " + membershipId));
     }
 
+    @Override
+    public Subscription getSubscriptionByIdAndMembershipId(Long membershipId, Long subscriptionId) {
+        return subscriptionRepository.findByIdAndMembershipId(membershipId,subscriptionId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Subscription not found with Id " + subscriptionId +
+                                " and MembershipId " + membershipId ));
+    }
+
 
 }
