@@ -31,8 +31,8 @@ public class MembershipController {
     @Autowired
     private MembershipService membershipService;
 
-    @Operation(summary = "Get Tags", description = "Get All Membership by Pages", tags = { "tags" })
-    @GetMapping("/tags")
+    @Operation(summary = "Get Memberships", description = "Get All Membership by Pages", tags = { "memberships" })
+    @GetMapping("/memberships")
     public Page<MembershipResource> getAllMemberships(
             @Parameter(description="Pageable Parameter")
                     Pageable pageable) {
@@ -41,10 +41,10 @@ public class MembershipController {
         return new PageImpl<>(resources, pageable, resources.size());
     }
 
-    @Operation(summary = "Get Tag by Id", description = "Get a Tag by specifying Id", tags = { "tags" })
+    @Operation(summary = "Get Membership by Id", description = "Get a Membership by specifying Id", tags = { "memberships" })
     @GetMapping("/memberships/{id}")
     public MembershipResource getMembershipById(
-            @Parameter(description="Project Id")
+            @Parameter(description="Membership Id")
             @PathVariable(name = "id") Long membershipId) {
         return convertToResource(membershipService.getMembershipById(membershipId));
     }
