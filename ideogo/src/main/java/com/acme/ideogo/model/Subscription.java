@@ -25,7 +25,7 @@ public class Subscription {
     @Column(unique = true)
     private String name;
     @NotNull
-    @NotBlank
+    //@NotBlank
     private float price;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)/// cuando se instancia un comment, no tiene valor inicial --> lazy

@@ -36,10 +36,8 @@ public class Project extends AuditModel {
     @Lob
     private String content;
 
-
-    @OneToOne(mappedBy = "project", cascade = CascadeType.ALL)
-    private ProjectSchedule projectSchedule;
-
+    @OneToOne
+    private User leader;
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -54,6 +52,7 @@ public class Project extends AuditModel {
             mappedBy = "projects")
     @JsonIgnore
     private List<User> users;
+
 
 }
 

@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @Getter
 @Setter
 public class User extends AuditModel {
@@ -26,24 +26,24 @@ public class User extends AuditModel {
     private String email;
 
     @NotNull
-    @Size(max = 20)
+    @Size(max = 30)
     @NaturalId
     private String password;
 
-    @NotNull
-    @Size(max = 4)
-    @NaturalId
-    private String sex;
-
-    @NotNull
-    @Size(max = 20)
-    @NaturalId
-    private String occupation;
-
-    @NotNull
-    @NotBlank
-    @Size(max = 100)
-    private String experience;
+    //@NotNull
+    //@Size(max = 10)
+    //@NaturalId
+    //private String sex;
+//
+    //@NotNull
+    //@Size(max = 30)
+    //@NaturalId
+    //private String occupation;
+//
+    //@NotNull
+    //@NotBlank
+    //@Size(max = 250)
+    //private String experience;
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -52,5 +52,4 @@ public class User extends AuditModel {
             inverseJoinColumns = {@JoinColumn(name = "project_id")})
     @JsonIgnore
     List<Project> projects;
-
 }

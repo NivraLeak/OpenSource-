@@ -22,7 +22,7 @@ public class Resource extends AuditModel {
 
 
     @NotNull
-    @NotBlank
+    //@NotBlank
     private float Quantity;
 
 
@@ -30,9 +30,6 @@ public class Resource extends AuditModel {
     @NotBlank
     @Size(max = 10)
     private String Unit;
-
-
-
 
 
 }

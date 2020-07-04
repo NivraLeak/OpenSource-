@@ -18,11 +18,11 @@ public class Membership extends AuditModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    @NotBlank
+    //@NotBlank
     private Date start_at;
 
     @NotNull
-    @NotBlank
+    // @NotBlank
     private Date end_at;
 
     @NotNull

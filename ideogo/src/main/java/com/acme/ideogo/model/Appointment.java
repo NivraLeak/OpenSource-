@@ -21,7 +21,7 @@ public class Appointment extends AuditModel {
     private Long id;
 
     @NotNull
-    @NotBlank
+    //@NotBlank
     public Date Date_time ;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)/// cuando se instancia un comment, no tiene valor inicial --> lazy
