@@ -2,6 +2,7 @@ package com.acme.ideogo.service;
 
 import com.acme.ideogo.exception.ResourceNotFoundException;
 import com.acme.ideogo.model.Application;
+import com.acme.ideogo.model.Category;
 import com.acme.ideogo.model.Project;
 import com.acme.ideogo.model.User;
 import com.acme.ideogo.repository.ApplicationRepository;
@@ -19,8 +20,8 @@ import java.util.List;
 @Service
 public class ApplicationServiceImpl implements ApplicationService {
 
-    @Autowired
-    private ProjectRepository projectRepository;
+    //@Autowired
+    //private ProjectRepository projectRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -35,14 +36,18 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
 
 
-
     @Override
-    public Application createApplication(Long userId, Application application) {
-        return userRepository.findById(userId).map(user -> {
+    public Application createApplication(Long userId , Application application) {
+       return userRepository.findById(userId).map(user -> {
             application.setUser(user);
+
+
+
+
+
             return applicationRepository.save(application);
         }).orElseThrow(() -> new ResourceNotFoundException(
-                "Application", "Id", userId));
+               "Application", "Id", userId));
     }
 
     @Override
@@ -55,6 +60,7 @@ public class ApplicationServiceImpl implements ApplicationService {
             application.setOrderRequest(applicationDetails.getOrderRequest());
             return applicationRepository.save(application);
         }).orElseThrow(() -> new ResourceNotFoundException("Application", "Id", applicationId));
+
     }
 
     @Override
@@ -66,18 +72,20 @@ public class ApplicationServiceImpl implements ApplicationService {
                 "Application not found with Id " + applicationId + " and projectId " + userId));
     }
 
-    @Override
-    public Page<Application> getAllApplicationsByProjectId(Long projectId, Pageable pageable) {
-        return applicationRepository.findByProjectId(projectId, pageable);
-    }
+   //@Override
+   //public Page<Application> getAllApplicationsByProjectId(Long projectId, Pageable pageable) {
+   //    return applicationRepository.findByProjectId(projectId, pageable);
+   //}
 
-    @Override
-    public Application getApplicationByIdAndProjectId(Long projectId, Long applicationId) {
-        return applicationRepository.findByIdAndProjectId(applicationId, projectId)
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "Application not found with Id " + applicationId +
-                                " and projectId" + projectId));
-    }
+    //@Override
+    //public Application getApplicationByIdAndProjectId(Long projectId, Long applicationId) {
+    //    return applicationRepository.findByIdAndProjectId(applicationId, projectId)
+    //            .orElseThrow(() -> new ResourceNotFoundException(
+    //                    "Application not found with Id " + applicationId +
+    //                            " and projectId" + projectId));
+    //}
+
+
 
 
 }

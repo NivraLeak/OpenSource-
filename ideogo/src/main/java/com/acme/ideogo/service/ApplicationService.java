@@ -1,6 +1,7 @@
 package com.acme.ideogo.service;
 
 import com.acme.ideogo.model.Application;
+import com.acme.ideogo.model.Profile;
 import com.acme.ideogo.model.Project;
 import com.acme.ideogo.model.User;
 import org.springframework.data.domain.Page;
@@ -13,8 +14,8 @@ public interface ApplicationService {
     Application createApplication(Long userId, Application application);
     Application updateApplication(Long userId, Long applicationId, Application applicationDetails);
     ResponseEntity<?> deleteApplication(Long userId, Long applicationId);
-    Page<Application> getAllApplicationsByProjectId(Long projectId, Pageable pageable);
-    Application getApplicationByIdAndProjectId(Long projectId, Long applicationId);
+    //Page<Application> getAllApplicationsByProjectId(Long projectId, Pageable pageable);
+    //Application getApplicationByIdAndProjectId(Long projectId, Long applicationId);
 
 
     //ResponseEntity<?> deleteApplication(Long projectId, Long applicationId);

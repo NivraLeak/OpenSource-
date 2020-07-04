@@ -36,9 +36,9 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User", "Id", userId));
         user.setEmail(userRequest.getEmail());
         user.setPassword(userRequest.getPassword());
-        user.setSex(userRequest.getSex());
-        user.setOccupation(userRequest.getOccupation());
-        user.setExperience(userRequest.getExperience());
+        //user.setSex(userRequest.getSex());
+        //user.setOccupation(userRequest.getOccupation());
+        //user.setExperience(userRequest.getExperience());
         return userRepository.save(user);
     }
 
