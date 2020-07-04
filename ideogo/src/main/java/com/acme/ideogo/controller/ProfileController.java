@@ -1,8 +1,11 @@
 package com.acme.ideogo.controller;
 
 
+import com.acme.ideogo.model.Application;
 import com.acme.ideogo.model.Profile;
+import com.acme.ideogo.resource.ApplicationResource;
 import com.acme.ideogo.resource.ProfileResource;
+import com.acme.ideogo.resource.SaveApplicationResource;
 import com.acme.ideogo.resource.SaveProfileResource;
 import com.acme.ideogo.service.ProfileService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -49,21 +52,33 @@ public class ProfileController {
         return convertToResource(profileService.getProfileById(profileId));
     }
 
-    @PostMapping("/profiles")
-    public ProfileResource createProfile(@Valid @RequestBody SaveProfileResource resource)  {
-        Profile profile = convertToEntity(resource);
-        return convertToResource(profileService.createProfile(profile));
+
+    @GetMapping("/users/{userId}/profiles")
+    public Page<ProfileResource> getAllProfilesByUserId(
+            @PathVariable(name = "userId") Long userId,
+            Pageable pageable) {
+        Page<Profile> applicationPage = profileService.getAllProfilesByUserId(userId, pageable);
+        List<ProfileResource> resources = applicationPage.getContent().stream().map(this::convertToResource).collect(Collectors.toList());
+        return new PageImpl<>(resources, pageable, resources.size());
     }
 
-    @PutMapping("/profiles/{id}")
-    public ProfileResource updateProfile(@PathVariable(name = "id") Long profileId, @Valid @RequestBody SaveProfileResource resource) {
-        Profile profile = convertToEntity(resource);
-        return convertToResource(profileService.updateProfile(profileId, profile));
+    @PostMapping("/users/{userId}/profiles")
+    public ProfileResource createProfile(@PathVariable(name = "userId") Long userId,
+                                         @Valid @RequestBody SaveProfileResource resource) {
+        return convertToResource(profileService.createProfile(userId, convertToEntity(resource)));
     }
 
-    @DeleteMapping("/profiles/{id}")
-    public ResponseEntity<?> deleteProfile(@PathVariable(name = "id") Long profileId) {
-        return profileService.deleteProfile(profileId);
+    @PutMapping("/users/{userId}/profiles/{profilesid}")
+    public ProfileResource updateProfile(@PathVariable(name = "userId") Long userId,
+                                         @PathVariable(name = "profileId") Long applicationId,
+                                         @Valid @RequestBody SaveProfileResource resource) {
+        return convertToResource(profileService.updateProfile(userId, applicationId, convertToEntity(resource)));
+    }
+
+    @DeleteMapping("/users/{userId}/profiles/{profileid}")
+    public ResponseEntity<?> deleteProfile(@PathVariable(name = "userId") Long userId,
+                                           @PathVariable(name = "profileId") Long profileId) {
+        return profileService.deleteProfile(userId, profileId);
     }
 
     @GetMapping("/tags/{tagId}/profiles")
@@ -75,7 +90,7 @@ public class ProfileController {
 
     @PostMapping("/profiles/{profileId}/tags/{tagId}")
     public ProfileResource assignProfileTag(@PathVariable(name = "profileId") Long profileId,
-                                      @PathVariable(name = "tagId") Long tagId) {
+                                            @PathVariable(name = "tagId") Long tagId) {
         return convertToResource(profileService.assignProfileTag(profileId, tagId));
     }
 

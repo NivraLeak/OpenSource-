@@ -35,18 +35,21 @@ public class ApplicationController {
         return new PageImpl<>(resources, pageable, resources.size());
     }
 
-    @GetMapping("/projects/{projectId}/applications/{applicationId}")
-    public ApplicationResource getApplicationByIdAndProjectId(@PathVariable(name = "projectId") Long projectId,
-                                                           @PathVariable(name = "applicationId") Long applicationId) {
-        return convertToResource(applicationService.getApplicationByIdAndProjectId(projectId, applicationId));
-    }
+    //@GetMapping("/projects/{projectId}/applications/{applicationId}")
+    //public ApplicationResource getApplicationByIdAndProjectId(@PathVariable(name = "projectId") Long projectId,
+    //                                                       @PathVariable(name = "applicationId") Long applicationId) {
+    //    return convertToResource(applicationService.getApplicationByIdAndProjectId(projectId, applicationId));
+    //}
 
-    @PostMapping("/users/{userId}/applications")
-    public ApplicationResource createApplication(@PathVariable(name = "userId") Long userId,
-                                         @Valid @RequestBody SaveApplicationResource resource) {
-        return convertToResource(applicationService.createApplication(userId, convertToEntity(resource)));
+     @PostMapping("/users/{userId}/applications")
+     public ApplicationResource createApplication(@PathVariable(name = "userId") Long userId,
+                                          @Valid @RequestBody SaveApplicationResource resource) {
+         return convertToResource(applicationService.createApplication(userId, convertToEntity(resource)));
 
-    }
+     }
+
+
+
 
     @PutMapping("/users/{userId}/applications/{applicationId}")
     public ApplicationResource updateApplication(@PathVariable(name = "userId") Long userId,
