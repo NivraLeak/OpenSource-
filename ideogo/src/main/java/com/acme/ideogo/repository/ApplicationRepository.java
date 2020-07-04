@@ -16,6 +16,6 @@ public interface ApplicationRepository extends JpaRepository<Application,Long> {
     Page<Application> findByUserId(Long userId, Pageable pageable);
     Optional<Application> findByIdAndUserId(Long id, Long userId);
 
-    Page<Application> findByProjectId(Long projectId, Pageable pageable);
-    Optional<Application> findByIdAndProjectId(Long id, Long projectId);
+    //Page<Application> findByProjectId(Long projectId, Pageable pageable);
+    //Optional<Application> findByIdAndProjectId(Long id, Long projectId);
 }
