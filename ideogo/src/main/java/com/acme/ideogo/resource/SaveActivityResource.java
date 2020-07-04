@@ -16,11 +16,11 @@ import javax.validation.constraints.Size;
 public class SaveActivityResource {
     @NotBlank
     @NotNull
-    @Size(max = 50)
+    @Size(max = 30)
     private String name;
 
     @NotNull
     @NotBlank
-    @Lob
+    @Size(max = 250)
     private String description;
 }

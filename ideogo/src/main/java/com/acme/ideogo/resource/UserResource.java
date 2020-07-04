@@ -23,11 +23,11 @@ public class UserResource extends AuditModel {
     private String password;
 
 
-    private String sex;
-
-
-    private String occupation;
-
-    private String experience;
-
+    //private String sex;
+//
+//
+    //private String occupation;
+//
+    //private String experience;
+//
 }

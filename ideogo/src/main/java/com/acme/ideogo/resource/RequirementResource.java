@@ -7,9 +7,7 @@ import javax.validation.constraints.Size;
 public class RequirementResource {
 
     private Long id;
-
     private String name;
-
     private String description;
 
 }

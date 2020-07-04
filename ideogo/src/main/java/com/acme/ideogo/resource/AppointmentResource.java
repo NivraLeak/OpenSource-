@@ -8,6 +8,6 @@ import java.util.Date;
 @Setter
 public class AppointmentResource {
 
-    public Date Date_time ;
+    private Date Date_time ;
 
 }

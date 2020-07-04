@@ -16,7 +16,7 @@ public class SaveSubscriptionResource {
     @Column(unique = true)
     private String name;
     @NotNull
-    @NotBlank
+    //@NotBlank
     private float price;
 
 }

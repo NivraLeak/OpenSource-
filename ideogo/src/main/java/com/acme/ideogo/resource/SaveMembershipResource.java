@@ -11,11 +11,11 @@ import java.util.Date;
 @Setter
 public class SaveMembershipResource {
     @NotNull
-    @NotBlank
+    //@NotBlank
     private Date start_at;
 
     @NotNull
-    @NotBlank
+    //@NotBlank
     private Date end_at;
 
     @NotNull

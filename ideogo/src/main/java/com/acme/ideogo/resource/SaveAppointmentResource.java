@@ -11,6 +11,6 @@ import java.util.Date;
 @Setter
 public class SaveAppointmentResource {
     @NotNull
-    @NotBlank
+    // @NotBlank
     public Date Date_time ;
 }

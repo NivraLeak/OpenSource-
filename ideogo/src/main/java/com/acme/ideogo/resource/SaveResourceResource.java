@@ -17,8 +17,8 @@ public class SaveResourceResource {
     @Size(max = 10)
     private String Unit;
 
-	  @NotNull
-    @NotBlank
+    @NotNull
+    //@NotBlank
     private float Quantity;
 
 

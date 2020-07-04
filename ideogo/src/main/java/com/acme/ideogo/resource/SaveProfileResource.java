@@ -29,11 +29,11 @@ public class SaveProfileResource {
     private String occupation;
 
     @NotNull
-    @NotBlank
+    //@NotBlank
     private int age;
 
     @NotNull
     @NotBlank
     @Size(max = 20)
-    private String typeuser;
+    private String typeUser;
 }

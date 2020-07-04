@@ -23,18 +23,18 @@ public class SaveUserResource {
     @NaturalId
     private String password;
 
-    @NotNull
-    @Size(max = 4)
-    @NaturalId
-    private String sex;
-
-    @NotNull
-    @Size(max = 20)
-    @NaturalId
-    private String occupation;
-
-    @NotNull
-    @NotBlank
-    @Size(max = 100)
-    private String experience;
+    //@NotNull
+    //@Size(max = 4)
+    //@NaturalId
+    //private String sex;
+//
+    //@NotNull
+    //@Size(max = 20)
+    //@NaturalId
+    //private String occupation;
+//
+    //@NotNull
+    //@NotBlank
+    //@Size(max = 100)
+    //private String experience;
 }
